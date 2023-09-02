@@ -73,7 +73,7 @@ h1 {
 }
 
 .result-container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #333; /* Match the background color */
     border: 2px solid #000;
     border-radius: 10px;
     max-width: 200px;
@@ -82,14 +82,15 @@ h1 {
 }
 
 .result-text {
+    color: #000; /* Black font color */
     margin: 0;
 }
 
 .reset-btn {
     border: 2px solid #000;
     border-radius: 10px;
-    background-color: #000;
-    color: #fff;
+    background-color: #fff; /* White background color */
+    color: #000; /* Black font color */
     font-size: 16px;
     padding: 5px 10px;
     margin-top: 10px;
@@ -97,6 +98,6 @@ h1 {
 }
 
 .reset-btn:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: #000; /* Black background color */
+    color: #fff; /* White font color */
 }
