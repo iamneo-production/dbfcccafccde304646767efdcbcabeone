@@ -12,7 +12,7 @@ function handleMove(button) {
         button.textContent = currentPlayer;
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
         message.textContent = `It's Player ${currentPlayer}'s turn`;
-        checkForWin();
+        checkForWin();a
     }
 }
 
