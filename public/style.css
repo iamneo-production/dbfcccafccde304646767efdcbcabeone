@@ -60,4 +60,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
   }
+  #reset-button:hover{
+    background-color: #555;
+  }
   
