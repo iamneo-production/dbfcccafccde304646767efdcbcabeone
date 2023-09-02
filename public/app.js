@@ -1,45 +1,73 @@
+const buttons = document.querySelectorAll('.btn');
+const message = document.querySelector('.message');
+const resultText = document.querySelector('.result-text');
+const resetButton = document.querySelector('.reset-btn');
+
 let currentPlayer = 'X';
-let board = ['', '', '', '', '', '', '', '', ''];
 let gameOver = false;
 
-function makeMove(index) {
-    if (board[index] === '' && !gameOver) {
-        board[index] = currentPlayer;
-        document.getElementsByClassName('cell')[index].textContent = currentPlayer;
-        document.getElementsByClassName('cell')[index].style.pointerEvents = 'none';
-        if (checkWin(currentPlayer)) {
-            document.getElementById('message').textContent = `Player ${currentPlayer} wins!`;
-            gameOver = true;
-        } else if (!board.includes('')) {
-            document.getElementById('message').textContent = "It's a draw!";
-            gameOver = true;
-        } else {
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            document.getElementById('message').textContent = `Player ${currentPlayer}'s Turn`;
-        }
+// Function to handle a player's move
+function handleMove(button) {
+    if (!button.textContent && !gameOver) {
+        button.textContent = currentPlayer;
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        message.textContent = `It's Player ${currentPlayer}'s turn`;
+        checkForWin();
     }
 }
 
-function checkWin(player) {
-    const winConditions = [
+// Function to check if a player has won
+function checkForWin() {
+    const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
         [0, 4, 8], [2, 4, 6] // Diagonals
     ];
-    return winConditions.some(combination => combination.every(index => board[index] === player));
-}
 
-function resetGame() {
-    currentPlayer = 'X';
-    board = ['', '', '', '', '', '', '', '', ''];
-    gameOver = false;
-    document.getElementById('message').textContent = "Player X's Turn";
-    const cells = document.getElementsByClassName('cell');
-    for (let cell of cells) {
-        cell.textContent = '';
-        cell.style.pointerEvents = 'auto';
+    for (const combination of winningCombinations) {
+        const [a, b, c] = combination;
+        if (
+            buttons[a].textContent &&
+            buttons[a].textContent === buttons[b].textContent &&
+            buttons[a].textContent === buttons[c].textContent
+        ) {
+            gameOver = true;
+            resultText.textContent = `Player ${buttons[a].textContent} wins!`;
+            resetButton.disabled = false;
+            break;
+        }
+    }
+
+    // Check for a draw
+    if (!buttons.some(button => !button.textContent)) {
+        gameOver = true;
+        resultText.textContent = "It's a draw!";
+        resetButton.disabled = false;
     }
 }
 
-document.getElementById('reset-button').addEventListener('click', resetGame);
+// Function to handle the game reset
+function resetGame() {
+    buttons.forEach(button => {
+        button.textContent = '';
+        button.disabled = false;
+    });
 
+    currentPlayer = 'X';
+    gameOver = false;
+    message.textContent = `It's Player X's turn`;
+    resultText.textContent = '';
+    resetButton.disabled = true;
+}
+
+// Add click event listeners to all buttons
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        handleMove(button);
+    });
+});
+
+// Add click event listener to the reset button
+resetButton.addEventListener('click', () => {
+    resetGame();
+});

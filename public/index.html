@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title> Tic Tac Toe</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
 </head>
 <body>
-  <h1>Tic Tac Toe</h1>
-  <div class="container">
-    <div class="board">
-      <div class="cell" onclick="makeMove(0)"></div>
-      <div class="cell" onclick="makeMove(1)"></div>
-      <div class="cell" onclick="makeMove(2)"></div>
-      <div class="cell" onclick="makeMove(3)"></div>
-      <div class="cell" onclick="makeMove(4)"></div>
-      <div class="cell" onclick="makeMove(5)"></div>
-      <div class="cell" onclick="makeMove(6)"></div>
-      <div class="cell" onclick="makeMove(7)"></div>
-      <div class="cell" onclick="makeMove(8)"></div>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="grid">
+            <div class="row">
+                <button class="btn" ></button>
+                <button class="btn" ></button>
+                <button class="btn" ></button>
+            </div>
+            <div class="row">
+                <button class="btn" ></button>
+                <button class="btn" ></button>
+                <button class="btn" ></button>
+            </div>
+            <div class="row">
+                <button class="btn" ></button>
+                <button class="btn" ></button>
+                <button class="btn" ></button>
+            </div>
+        </div>
+        <div class="message">It's Player X's turn</div>
+        <div class="result-container">
+            <p class="result-text"></p>
+            <button class="reset-btn" disabled>Reset</button>
+        </div>
     </div>
-    <div class="status">
-      <p id="message">Player X's Turn</p>
-      <button id="reset-button" onclick="resetGame()">Reset</button>
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
